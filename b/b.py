@@ -20,8 +20,7 @@ def findInvalidID(a,b):
     return val
 
 def findInvalidID2(a,b):
-    l,r,val=len(a),len(b),0 #string manipulation is the goat here
-    validnums=set()
+    l,r,val,validnums=len(a),len(b),0,set()
     for i in range(l,r+1): # i is the length of possible string, this is to get within range a-b
         for k in range(1, i//2 + 1): # length of the repeat string , so like {1}{1}{1}{1} vs {10}{10}
             if i//k < 2 or i//k *k != i: continue
@@ -30,15 +29,14 @@ def findInvalidID2(a,b):
                 cand=int(str(j)*(i//k))
                 if cand < int(a):
                     continue
-                if cand <= int(b):
-                    if cand not in validnums:
-                        validnums.add(cand)
-                        val+=cand
+                if cand <= int(b) and (cand not in validnums):
+                    validnums.add(cand)
+                    val+=cand
                 elif cand > int(b):
                     break 
     return val
-n = sys.stdin.readline().replace('\n','').split(',')
 
+n = sys.stdin.readline().replace('\n','').split(',')
 invalid=0
 for i in n:
     a,b = i.split('-')
