@@ -36,9 +36,8 @@ def calcFewest(v):
                     if cand not in totcombos[i]: #ensure that this xor doesnt undo stuff, if it does, then was a useless operation
                         totcombos[i+1].add(cand)
         return 0
-    abit=indicatortobit(a[1:-1])
-    bbit=list(map(buttontobit, b)) 
-    return bruteforcebit(abit, bbit)
+
+    return bruteforcebit(indicatortobit(a[1:-1]), list(map(buttontobit, b)))
     
 res=0
 n = sys.stdin.readline().replace('\n','')
